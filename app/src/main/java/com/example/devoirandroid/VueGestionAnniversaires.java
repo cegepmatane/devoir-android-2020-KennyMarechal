@@ -2,7 +2,10 @@ package com.example.devoirandroid;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -13,6 +16,7 @@ import java.util.List;
 public class VueGestionAnniversaires extends AppCompatActivity {
 
     protected ListView vueGestionAnniversaires;
+    protected Button boutonAjouterAnniversaire;
     protected List<HashMap<String, String>> listeAnniversaire;
 
     @Override
@@ -21,6 +25,16 @@ public class VueGestionAnniversaires extends AppCompatActivity {
         setContentView(R.layout.vue_gestion_anniversaires);
 
         vueGestionAnniversaires = (ListView)findViewById(R.id.vueListeGestionAnniversaires);
+        boutonAjouterAnniversaire = (Button) findViewById(R.id.buttonAjouterAnniversaire);
+
+        boutonAjouterAnniversaire.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent vueAjouterAnniversaire = new Intent(getApplicationContext(), VueAjouterAnniversaire.class);
+                startActivity(vueAjouterAnniversaire);
+                finish();
+            }
+        });
 
         listeAnniversaire = preparerListeAnniversaire();
 

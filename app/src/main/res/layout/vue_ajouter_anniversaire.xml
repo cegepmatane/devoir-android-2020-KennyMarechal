@@ -4,20 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VueGestionAnniversaires">
-
-    <ListView
-        android:id="@+id/vueListeGestionAnniversaires"
-        android:layout_width="410dp"
-        android:layout_height="631dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp" />
+    tools:context=".VueAjouterAnniversaire">
 
     <Button
-        android:id="@+id/buttonAjouterAnniversaire"
+        android:id="@+id/buttonRetour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ajouter un Anniversaire"
-        tools:layout_editor_absoluteX="101dp"
-        tools:layout_editor_absoluteY="651dp" />
+        android:text="Back"
+        tools:layout_editor_absoluteX="22dp"
+        tools:layout_editor_absoluteY="21dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
