@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".vue.VueAjouterAnniversaire">
+    tools:context=".vue.VueModifierAnniversaire">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,10 +18,10 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/buttonRetour"
-                android:layout_width="wrap_content"
+                android:id="@+id/buttonRetourVueModifier"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:text="Back" />
+                android:text="Retour" />
         </LinearLayout>
 
         <LinearLayout
@@ -31,12 +31,12 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center|center_horizontal|center_vertical"
-                android:text="Vue ajouter anniversaire" />
+                android:gravity="center"
+                android:text="TextView"
+                tools:text="Vue modifier anniversaire" />
         </LinearLayout>
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

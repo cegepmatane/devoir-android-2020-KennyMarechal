@@ -1,4 +1,4 @@
-package com.example.devoirandroid;
+package com.example.devoirandroid.vue;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+
+import com.example.devoirandroid.R;
+import com.example.devoirandroid.vue.VueAjouterAnniversaire;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -46,6 +49,15 @@ public class VueGestionAnniversaires extends AppCompatActivity {
                 new int[] {android.R.id.text1, android.R.id.text2});
 
         vueGestionAnniversaires.setAdapter(adapter);
+
+        /*vueGestionAnniversaires.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent vueAjouterAnniversaire = new Intent(getApplicationContext(), VueModifierAnniversaire.class);
+                startActivity(vueAjouterAnniversaire);
+                finish();
+            }
+        });*/
     }
 
     public List<HashMap<String,String>> preparerListeAnniversaire(){

@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".VueAjouterAnniversaire"></activity>
-        <activity android:name=".VueGestionAnniversaires">
+        <activity android:name=".vue.VueModifierAnniversaire"></activity>
+        <activity android:name=".vue.VueAjouterAnniversaire" />
+        <activity android:name=".vue.VueGestionAnniversaires">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

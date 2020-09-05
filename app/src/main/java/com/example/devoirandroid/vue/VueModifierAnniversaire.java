@@ -1,4 +1,4 @@
-package com.example.devoirandroid;
+package com.example.devoirandroid.vue;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,16 +7,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class VueAjouterAnniversaire extends AppCompatActivity {
+import com.example.devoirandroid.R;
+
+public class VueModifierAnniversaire extends AppCompatActivity {
 
     protected Button boutonRetour;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vue_ajouter_anniversaire);
+        setContentView(R.layout.vue_modifier_anniversare);
 
-        boutonRetour = (Button) findViewById(R.id.buttonRetour);
+        boutonRetour = (Button) findViewById(R.id.buttonRetourVueModifier);
 
         boutonRetour.setOnClickListener(new View.OnClickListener() {
             @Override
