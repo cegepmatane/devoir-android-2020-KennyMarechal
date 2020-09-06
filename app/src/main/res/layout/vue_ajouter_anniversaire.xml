@@ -44,7 +44,7 @@
                     android:text="Titre" />
 
                 <EditText
-                    android:id="@+id/editTextTextMultiLine"
+                    android:id="@+id/vueAjouterAnniversaireChampTitre"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -68,7 +68,7 @@
                     android:text="Date" />
 
                 <EditText
-                    android:id="@+id/editTextDate"
+                    android:id="@+id/vueAjouterAnniversaireChampDate"
                     android:layout_width="411dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -92,7 +92,7 @@
                     android:text="Heure" />
 
                 <EditText
-                    android:id="@+id/editTextTime"
+                    android:id="@+id/vueAjouterAnniversaireChampHeure"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -115,7 +115,7 @@
                     android:text="Description" />
 
                 <EditText
-                    android:id="@+id/editTextTextMultiLine3"
+                    android:id="@+id/vueAjouterAnniversaireChampDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -138,7 +138,7 @@
                     android:text="URL" />
 
                 <EditText
-                    android:id="@+id/editTextTextMultiLine4"
+                    android:id="@+id/vueAjouterAnniversaireChampURL"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -156,7 +156,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/buttonValiderAjouterAnniversaire"
+                android:id="@+id/vueAjouterAnniversaireActionModifier"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Valider" />

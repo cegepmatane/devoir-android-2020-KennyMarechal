@@ -61,9 +61,9 @@ public class VueGestionAnniversaires extends AppCompatActivity {
                         ListView vueListeAnniversaire = (ListView)view.getParent();
                         HashMap<String,String>anniversaire = (HashMap<String,String>)vueListeAnniversaire.getItemAtPosition((int)positionItem);
 
-                        Toast message = Toast.makeText(getApplicationContext(),"Position " +positionItem + " Titre "+ anniversaire.get("titre"),
+                        /*Toast message = Toast.makeText(getApplicationContext(),"Position " +positionItem + " Titre "+ anniversaire.get("titre"),
                                 Toast.LENGTH_SHORT);
-                        message.show();
+                        message.show();*/
 
                         startActivity(intentActionNaviguerModifierAnnirversaire);
                         finish();
