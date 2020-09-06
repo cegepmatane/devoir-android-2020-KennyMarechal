@@ -11,20 +11,21 @@ import com.example.devoirandroid.R;
 
 public class VueModifierAnniversaire extends AppCompatActivity {
 
-    protected Button boutonRetour;
+    protected Button actionRetour;
+    protected Intent intentActionNaviguerVueGestionAnniversaires;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vue_modifier_anniversare);
 
-        boutonRetour = (Button) findViewById(R.id.buttonRetourVueModifier);
+        actionRetour = (Button) findViewById(R.id.vueModifierAnniversaireActionRetour);
+        intentActionNaviguerVueGestionAnniversaires = new Intent(this, VueGestionAnniversaires.class);
 
-        boutonRetour.setOnClickListener(new View.OnClickListener() {
+        actionRetour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent vueGestionAnniversaires = new Intent(getApplicationContext(), VueGestionAnniversaires.class);
-                startActivity(vueGestionAnniversaires);
+                startActivity(intentActionNaviguerVueGestionAnniversaires);
                 finish();
             }
         });

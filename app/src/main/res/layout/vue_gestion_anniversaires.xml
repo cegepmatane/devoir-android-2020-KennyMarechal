@@ -18,7 +18,7 @@
             android:orientation="vertical">
 
             <ListView
-                android:id="@+id/vueListeGestionAnniversaires"
+                android:id="@+id/vueGestionAnniversairesListeAnniversaire"
                 android:layout_width="410dp"
                 android:layout_height="631dp"
                 android:layout_weight="1"/>
@@ -30,7 +30,7 @@
                 android:orientation="vertical">
 
                 <Button
-                    android:id="@+id/buttonAjouterAnniversaire"
+                    android:id="@+id/vueGestionAnniversairesActionAjouterAnniversaire"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Ajouter un Anniversaire" />

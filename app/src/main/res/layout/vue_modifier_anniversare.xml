@@ -18,7 +18,7 @@
             android:orientation="vertical">
 
             <Button
-                android:id="@+id/buttonRetourVueModifier"
+                android:id="@+id/vueModifierAnniversaireActionRetour"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:text="Retour" />
@@ -35,7 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="TextView"
+                android:text="Modifier un Anniversaire"
                 tools:text="Vue modifier anniversaire" />
         </LinearLayout>
     </LinearLayout>
