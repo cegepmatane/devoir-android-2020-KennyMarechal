@@ -1,4 +1,4 @@
-package com.example.devoirandroid.model;
+package com.example.devoirandroid.donnee;
 
 public class Anniversaire {
 

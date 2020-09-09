@@ -12,6 +12,7 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.example.devoirandroid.R;
+import com.example.devoirandroid.donnee.AnniversaireDAO;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,8 +23,11 @@ public class VueGestionAnniversaires extends AppCompatActivity {
     protected ListView vueGestionAnniversairesListe;
     protected Button actionAjouterAnniversaire;
     protected List<HashMap<String, String>> listeAnniversaire;
+    protected AnniversaireDAO anniversaireDAO;
     protected Intent intentActionNaviguerAjouterAnnirversaire;
     protected Intent intentActionNaviguerModifierAnnirversaire;
+
+    static final public int ACTIVITE_AJOUTER_ANNIVERSAIRE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,22 +38,14 @@ public class VueGestionAnniversaires extends AppCompatActivity {
         actionAjouterAnniversaire = (Button) findViewById(R.id.vueGestionAnniversairesActionAjouterAnniversaire);
         intentActionNaviguerAjouterAnnirversaire = new Intent (this, VueAjouterAnniversaire.class);
         intentActionNaviguerModifierAnnirversaire = new Intent(this, VueModifierAnniversaire.class);
+        anniversaireDAO = anniversaireDAO.getInstance();
 
-        listeAnniversaire = preparerListeAnniversaire();
-
-        SimpleAdapter adapter = new SimpleAdapter(
-                this,
-                listeAnniversaire,
-                android.R.layout.two_line_list_item,
-                new String[] {"titre", "date de realisation", "heure","description","url"},
-                new int[] {android.R.id.text1, android.R.id.text2});
-
-        vueGestionAnniversairesListe.setAdapter(adapter);
+        afficherListeAnniversaire();
 
         actionAjouterAnniversaire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(intentActionNaviguerAjouterAnnirversaire);
+                startActivityForResult(intentActionNaviguerAjouterAnnirversaire, ACTIVITE_AJOUTER_ANNIVERSAIRE);
                 finish();
             }
         });
@@ -71,44 +67,25 @@ public class VueGestionAnniversaires extends AppCompatActivity {
                 });
     }
 
-    public List<HashMap<String,String>> preparerListeAnniversaire(){
+    protected void onActivityResult(int activite, int resultat, Intent donnee) {
 
-        List<HashMap<String,String>> listeAnniversaire = new ArrayList<HashMap<String,String>>();
+        super.onActivityResult(activite, resultat, donnee);
+        switch (activite){
+            case ACTIVITE_AJOUTER_ANNIVERSAIRE:
+                afficherListeAnniversaire();
+                break;
+        }
+    }
+    public void afficherListeAnniversaire(){
+        listeAnniversaire = anniversaireDAO.listerAnniversaire();
 
-        HashMap<String, String> anniversaire;
+        SimpleAdapter adapter = new SimpleAdapter(
+                this,
+                listeAnniversaire,
+                android.R.layout.two_line_list_item,
+                new String[] {"titre", "date de realisation", "heure","description","url"},
+                new int[] {android.R.id.text1, android.R.id.text2});
 
-        anniversaire = new HashMap<String,String>();
-        anniversaire.put("titre", "anniversaire Maman");
-        anniversaire.put("date de realisation", "02/09/2020");
-        anniversaire.put("heure", "18:16");
-        anniversaire.put("description ", "pas de description");
-        anniversaire.put("url", "no link");
-        listeAnniversaire.add(anniversaire);
-
-        anniversaire = new HashMap<String,String>();
-        anniversaire.put("titre", "anniversaire papa");
-        anniversaire.put("date de realisation", "02/09/2020");
-        anniversaire.put("heure", "18:16");
-        anniversaire.put("description ", "pas de description");
-        anniversaire.put("url", "no link");
-        listeAnniversaire.add(anniversaire);
-
-        anniversaire = new HashMap<String,String>();
-        anniversaire.put("titre", "anniversaire Leon");
-        anniversaire.put("date de realisation", "02/09/2020");
-        anniversaire.put("heure", "18:16");
-        anniversaire.put("description ", "pas de description");
-        anniversaire.put("url", "no link");
-        listeAnniversaire.add(anniversaire);
-
-        anniversaire = new HashMap<String,String>();
-        anniversaire.put("titre", "anniversaire Kenny");
-        anniversaire.put("date de realisation", "02/09/2020");
-        anniversaire.put("heure", "18:16");
-        anniversaire.put("description ", "pas de description");
-        anniversaire.put("url", "no link");
-        listeAnniversaire.add(anniversaire);
-
-        return listeAnniversaire;
+        vueGestionAnniversairesListe.setAdapter(adapter);
     }
 }
