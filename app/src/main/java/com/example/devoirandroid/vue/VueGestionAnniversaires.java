@@ -9,10 +9,10 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 import com.example.devoirandroid.R;
 import com.example.devoirandroid.donnee.AnniversaireDAO;
+import com.example.devoirandroid.model.Anniversaire;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,8 +22,11 @@ public class VueGestionAnniversaires extends AppCompatActivity {
 
     protected ListView vueGestionAnniversairesListe;
     protected Button actionAjouterAnniversaire;
-    protected List<HashMap<String, String>> listeAnniversaire;
+
+    //protected List<HashMap<String, String>> listeAnniversaire;
+    protected List<Anniversaire> listeAnniversaire;
     protected AnniversaireDAO anniversaireDAO;
+
     protected Intent intentActionNaviguerAjouterAnnirversaire;
     protected Intent intentActionNaviguerModifierAnnirversaire;
 
@@ -45,8 +48,7 @@ public class VueGestionAnniversaires extends AppCompatActivity {
         actionAjouterAnniversaire.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivityForResult(intentActionNaviguerAjouterAnnirversaire, ACTIVITE_AJOUTER_ANNIVERSAIRE);
-                finish();
+                naviguerVueAjouterAnniversaire();
             }
         });
 
@@ -60,11 +62,20 @@ public class VueGestionAnniversaires extends AppCompatActivity {
                         /*Toast message = Toast.makeText(getApplicationContext(),"Position " +positionItem + " Titre "+ anniversaire.get("titre"),
                                 Toast.LENGTH_SHORT);
                         message.show();*/
+                        naviguerVueModifierAnniversaire();
 
-                        startActivity(intentActionNaviguerModifierAnnirversaire);
-                        finish();
                     }
                 });
+    }
+
+    private void naviguerVueModifierAnniversaire(){
+        startActivity(intentActionNaviguerModifierAnnirversaire);
+        finish();
+    }
+
+    private void naviguerVueAjouterAnniversaire(){
+        startActivityForResult(intentActionNaviguerAjouterAnnirversaire, ACTIVITE_AJOUTER_ANNIVERSAIRE);
+        finish();
     }
 
     protected void onActivityResult(int activite, int resultat, Intent donnee) {
@@ -79,11 +90,18 @@ public class VueGestionAnniversaires extends AppCompatActivity {
     public void afficherListeAnniversaire(){
         listeAnniversaire = anniversaireDAO.listerAnniversaire();
 
+        List<HashMap<String,String>> listeAnniversairePourAfficher = new ArrayList<HashMap<String, String>>();
+
+        for(Anniversaire anniversaire:listeAnniversaire){
+            listeAnniversairePourAfficher.add(anniversaire.obtenirAnniversairePourAfficher());
+        }
+
+
         SimpleAdapter adapter = new SimpleAdapter(
                 this,
-                listeAnniversaire,
+                listeAnniversairePourAfficher,
                 android.R.layout.two_line_list_item,
-                new String[] {"titre", "date de realisation", "heure","description","url"},
+                new String[] {"titre", "date"},
                 new int[] {android.R.id.text1, android.R.id.text2});
 
         vueGestionAnniversairesListe.setAdapter(adapter);

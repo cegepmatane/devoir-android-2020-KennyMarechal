@@ -69,13 +69,14 @@ public class VueAjouterAnniversaire extends AppCompatActivity {
 
         anniversaire = new HashMap<String,String>();
         anniversaire.put("titre", vueAjouterAnniversaireChampTitre.getText().toString());
-        anniversaire.put("date de realisation", vueAjouterAnniversaireChampDate.getText().toString());
+        anniversaire.put("date", vueAjouterAnniversaireChampDate.getText().toString());
         anniversaire.put("heure", vueAjouterAnniversaireChampHeure.getText().toString());
         anniversaire.put("description ", vueAjouterAnniversaireChampDescription.getText().toString());
         anniversaire.put("url", vueAjouterAnniversaireChampURL.getText().toString());
 
         anniversaireDAO = anniversaireDAO.getInstance();
-        anniversaireDAO.ajouterAnniversaire(anniversaire);
+
+        //anniversaireDAO.ajouterAnniversaire(anniversaire);
     }
 
     private void naviguerVueGestionAnniversaire(){
