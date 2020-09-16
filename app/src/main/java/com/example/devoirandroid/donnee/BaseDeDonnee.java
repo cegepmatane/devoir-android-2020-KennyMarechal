@@ -11,7 +11,9 @@ public class BaseDeDonnee extends SQLiteOpenHelper {
    private static BaseDeDonnee instance = null;
 
    public static synchronized BaseDeDonnee getInstance(Context contexte){
-       instance = new BaseDeDonnee(contexte);
+       if(null == instance){
+           instance = new BaseDeDonnee(contexte);
+       }
        return instance;
    }
 
@@ -24,7 +26,8 @@ public class BaseDeDonnee extends SQLiteOpenHelper {
    }
 
     public BaseDeDonnee(Context contexte){
-        super(contexte,"anniversaires",null,1);
+
+       super(contexte,"anniversaires",null,1);
     }
 
     @Override

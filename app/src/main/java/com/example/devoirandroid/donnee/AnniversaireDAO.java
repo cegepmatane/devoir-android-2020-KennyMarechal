@@ -17,7 +17,7 @@ public class AnniversaireDAO {
     private BaseDeDonnee baseDeDonnee;
 
     private AnniversaireDAO(){
-        this.baseDeDonnee.getInstance();
+        baseDeDonnee = this.baseDeDonnee.getInstance();
 
         listeAnniversaire = new ArrayList<Anniversaire>();
         //preparerListeAnniversaire();
@@ -41,11 +41,10 @@ public class AnniversaireDAO {
 
     public List<Anniversaire> listerAnniversaire(){
         String LISTER_ANNIVERSAIRE = "SELECT * FROM anniversaire" ;
-        Cursor curseur = this.baseDeDonnee.getReadableDatabase().rawQuery(LISTER_ANNIVERSAIRE,
+        Cursor curseur = baseDeDonnee.getReadableDatabase().rawQuery(LISTER_ANNIVERSAIRE,
                 null);
 
-        this.listeAnniversaire.clear();
-        Anniversaire anniversaire;
+        listeAnniversaire.clear();
 
         int indexId = curseur.getColumnIndex("id");
         int indexTitre = curseur.getColumnIndex("titre");
@@ -55,12 +54,12 @@ public class AnniversaireDAO {
         int indexDescription = curseur.getColumnIndex("date");
         int indexURL = curseur.getColumnIndex("date");*/
 
-        for(curseur.moveToFirst();curseur.isAfterLast();curseur.moveToNext()){
+        for(curseur.moveToFirst();!curseur.isAfterLast();curseur.moveToNext()){
             int id = curseur.getInt(indexId);
             String titre = curseur.getString(indexTitre);
             String date = curseur.getString(indexDate);
-            anniversaire = new Anniversaire(id, titre, date,"null","null","null");
-            this.listeAnniversaire.add(anniversaire);
+
+            listeAnniversaire.add(new Anniversaire(id, titre, date,"null","null","null"));
         }
         return listeAnniversaire;
     }
