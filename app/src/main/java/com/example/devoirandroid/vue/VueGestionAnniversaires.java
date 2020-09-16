@@ -12,6 +12,7 @@ import android.widget.SimpleAdapter;
 
 import com.example.devoirandroid.R;
 import com.example.devoirandroid.donnee.AnniversaireDAO;
+import com.example.devoirandroid.donnee.BaseDeDonnee;
 import com.example.devoirandroid.model.Anniversaire;
 
 import java.util.ArrayList;
@@ -23,7 +24,6 @@ public class VueGestionAnniversaires extends AppCompatActivity {
     protected ListView vueGestionAnniversairesListe;
     protected Button actionAjouterAnniversaire;
 
-    //protected List<HashMap<String, String>> listeAnniversaire;
     protected List<Anniversaire> listeAnniversaire;
     protected AnniversaireDAO anniversaireDAO;
 
@@ -41,6 +41,9 @@ public class VueGestionAnniversaires extends AppCompatActivity {
         actionAjouterAnniversaire = (Button) findViewById(R.id.vueGestionAnniversairesActionAjouterAnniversaire);
         intentActionNaviguerAjouterAnnirversaire = new Intent (this, VueAjouterAnniversaire.class);
         intentActionNaviguerModifierAnnirversaire = new Intent(this, VueModifierAnniversaire.class);
+
+        BaseDeDonnee.getInstance(getApplicationContext());
+
         anniversaireDAO = anniversaireDAO.getInstance();
 
         afficherListeAnniversaire();
@@ -95,7 +98,6 @@ public class VueGestionAnniversaires extends AppCompatActivity {
         for(Anniversaire anniversaire:listeAnniversaire){
             listeAnniversairePourAfficher.add(anniversaire.obtenirAnniversairePourAfficher());
         }
-
 
         SimpleAdapter adapter = new SimpleAdapter(
                 this,

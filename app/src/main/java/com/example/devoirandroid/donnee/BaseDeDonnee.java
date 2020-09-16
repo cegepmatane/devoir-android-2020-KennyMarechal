@@ -24,7 +24,7 @@ public class BaseDeDonnee extends SQLiteOpenHelper {
    }
 
     public BaseDeDonnee(Context contexte){
-        super(contexte,"anniversaire",null,1);
+        super(contexte,"anniversaires",null,1);
     }
 
     @Override
@@ -41,9 +41,15 @@ public class BaseDeDonnee extends SQLiteOpenHelper {
         String INSERT_1 = "insert into anniversaire(titre,date) VALUES ('Anniversaire Kenny','27/05/1993')";
         String INSERT_2 = "insert into anniversaire(titre,date) VALUES ('Anniversaire Jessica','01/04/1987')";
         String INSERT_3 = "insert into anniversaire(titre,date) VALUES ('Anniversaire Leon','10/12/2018')";
+
+        db.execSQL(INSERT_1);
+        db.execSQL(INSERT_2);
+        db.execSQL(INSERT_3);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+       String CREER_TABLE = "create table anniversaires (id PRIMARY KEY, titre TEXT,date TEXT)";
+       db.execSQL(CREER_TABLE);
     }
 }

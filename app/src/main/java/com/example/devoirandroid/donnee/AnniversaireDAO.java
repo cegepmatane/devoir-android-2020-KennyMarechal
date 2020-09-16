@@ -1,5 +1,10 @@
 package com.example.devoirandroid.donnee;
 
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
 import com.example.devoirandroid.model.Anniversaire;
 
 import java.util.ArrayList;
@@ -9,14 +14,17 @@ import java.util.List;
 public class AnniversaireDAO {
 
     private static AnniversaireDAO instance = null;
-    //private List<HashMap<String,String>> listeAnniversaire ;
     private List<Anniversaire> listeAnniversaire ;
+    private BaseDeDonnee baseDeDonnee;
 
     private AnniversaireDAO(){
+        this.baseDeDonnee.getInstance();
+
         listeAnniversaire = new ArrayList<Anniversaire>();
-        preparerListeAnniversaire();
+        //preparerListeAnniversaire();
     }
-public static AnniversaireDAO getInstance(){
+
+    public static AnniversaireDAO getInstance(){
         if(null==instance){
             instance=new AnniversaireDAO();
         }
@@ -29,49 +37,56 @@ public static AnniversaireDAO getInstance(){
         listeAnniversaire.add(new Anniversaire(2,"anniversaire Leon","10/12/2018","null","pas de description","null"));
         listeAnniversaire.add(new Anniversaire(3,"anniversaire Kenny","27/05/1993","null","pas de description","null"));
         listeAnniversaire.add(new Anniversaire(3,"anniversaire Jessica <3","01/04/1987","null","pas de description","null"));
-/*
-        HashMap<String, String> anniversaire;
-
-        anniversaire = new HashMap<String,String>();
-        anniversaire.put("titre", "anniversaire Maman");
-        anniversaire.put("date de realisation", "02/09/2020");
-        anniversaire.put("heure", "18:16");
-        anniversaire.put("description ", "pas de description");
-        anniversaire.put("url", "no link");
-        listeAnniversaire.add(anniversaire);
-
-        anniversaire = new HashMap<String,String>();
-        anniversaire.put("titre", "anniversaire papa");
-        anniversaire.put("date de realisation", "02/09/2020");
-        anniversaire.put("heure", "18:16");
-        anniversaire.put("description ", "pas de description");
-        anniversaire.put("url", "no link");
-        listeAnniversaire.add(anniversaire);
-
-        anniversaire = new HashMap<String,String>();
-        anniversaire.put("titre", "anniversaire Leon");
-        anniversaire.put("date de realisation", "02/09/2020");
-        anniversaire.put("heure", "18:16");
-        anniversaire.put("description ", "pas de description");
-        anniversaire.put("url", "no link");
-        listeAnniversaire.add(anniversaire);
-
-        anniversaire = new HashMap<String,String>();
-        anniversaire.put("titre", "anniversaire Kenny");
-        anniversaire.put("date de realisation", "02/09/2020");
-        anniversaire.put("heure", "18:16");
-        anniversaire.put("description ", "pas de description");
-        anniversaire.put("url", "no link");
-        listeAnniversaire.add(anniversaire);
-
- */
     }
 
+
     public List<Anniversaire> listerAnniversaire(){
+        String LISTER_ANNIVERSAIRE = "SELECT * FROM anniversaires";
+        Cursor curseur = this.baseDeDonnee.getReadableDatabase().rawQuery(LISTER_ANNIVERSAIRE,null);
+
+        this.listeAnniversaire.clear();
+        Anniversaire anniversaire;
+
+        int indexId = curseur.getColumnIndex("id");
+        int indexTitre = curseur.getColumnIndex("titre");
+        int indexDate = curseur.getColumnIndex("date");
+        /*int indexHeure = curseur.getColumnIndex("date");
+        int indexDescription = curseur.getColumnIndex("date");
+        int indexURL = curseur.getColumnIndex("date");*/
+
+        for(curseur.moveToFirst();curseur.isAfterLast();curseur.moveToNext()){
+            int id = curseur.getInt(indexId);
+            String titre = curseur.getString(indexTitre);
+            String date = curseur.getString(indexDate);
+            anniversaire = new Anniversaire(id, titre, date,"null","null","null");
+            this.listeAnniversaire.add(anniversaire);
+        }
         return listeAnniversaire;
     }
 
     public void ajouterAnniversaire(Anniversaire anniversaire){
-        //listeAnniversaire.add(anniversaire);
+        SQLiteDatabase baseDeDonneeEcriture = this.baseDeDonnee.getWritableDatabase();
+
+        baseDeDonneeEcriture.beginTransaction();
+        try {
+            ContentValues anniversaireEnCleValeur = new ContentValues();
+            anniversaireEnCleValeur.put("titre",anniversaire.getTitre());
+            anniversaireEnCleValeur.put("date",anniversaire.getDate());
+
+            baseDeDonneeEcriture.insertOrThrow("anniversaire",null, anniversaireEnCleValeur);
+            baseDeDonneeEcriture.setTransactionSuccessful();
+        }catch (Exception e){
+            Log.d("AnniversaireDAO","Errreur en tentant d'ajouter un anniversaire dans la base de donnee");
+        }finally {
+            baseDeDonneeEcriture.endTransaction();
+        }
+    }
+
+    public Anniversaire chercherAnniversaireParId(int id){
+        listerAnniversaire();
+        for(Anniversaire anniversaireRecherche : this.listeAnniversaire){
+            if(anniversaireRecherche.getId()== id)return anniversaireRecherche;
+        }
+        return  null;
     }
 }

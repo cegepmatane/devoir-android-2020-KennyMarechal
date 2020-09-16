@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.devoirandroid.R;
 import com.example.devoirandroid.donnee.AnniversaireDAO;
+import com.example.devoirandroid.model.Anniversaire;
 
 import java.util.HashMap;
 
@@ -64,19 +65,15 @@ public class VueAjouterAnniversaire extends AppCompatActivity {
     }
 
     private void enregistrerAnniversaire(){
-
-        HashMap<String, String> anniversaire;
-
-        anniversaire = new HashMap<String,String>();
-        anniversaire.put("titre", vueAjouterAnniversaireChampTitre.getText().toString());
-        anniversaire.put("date", vueAjouterAnniversaireChampDate.getText().toString());
-        anniversaire.put("heure", vueAjouterAnniversaireChampHeure.getText().toString());
-        anniversaire.put("description ", vueAjouterAnniversaireChampDescription.getText().toString());
-        anniversaire.put("url", vueAjouterAnniversaireChampURL.getText().toString());
+        String titre =  vueAjouterAnniversaireChampTitre.getText().toString();
+        String date = vueAjouterAnniversaireChampDate.getText().toString();
+        String heure = vueAjouterAnniversaireChampHeure.getText().toString();
+        String description = vueAjouterAnniversaireChampDescription.getText().toString();
+        String url = vueAjouterAnniversaireChampURL.getText().toString();
 
         anniversaireDAO = anniversaireDAO.getInstance();
 
-        //anniversaireDAO.ajouterAnniversaire(anniversaire);
+        anniversaireDAO.ajouterAnniversaire(new Anniversaire(0,titre,date,heure,description,url));
     }
 
     private void naviguerVueGestionAnniversaire(){
