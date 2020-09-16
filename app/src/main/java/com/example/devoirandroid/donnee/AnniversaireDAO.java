@@ -8,7 +8,6 @@ import android.util.Log;
 import com.example.devoirandroid.model.Anniversaire;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class AnniversaireDAO {
@@ -41,8 +40,9 @@ public class AnniversaireDAO {
 
 
     public List<Anniversaire> listerAnniversaire(){
-        String LISTER_ANNIVERSAIRE = "SELECT * FROM anniversaires";
-        Cursor curseur = this.baseDeDonnee.getReadableDatabase().rawQuery(LISTER_ANNIVERSAIRE,null);
+        String LISTER_ANNIVERSAIRE = "SELECT * FROM anniversaire" ;
+        Cursor curseur = this.baseDeDonnee.getReadableDatabase().rawQuery(LISTER_ANNIVERSAIRE,
+                null);
 
         this.listeAnniversaire.clear();
         Anniversaire anniversaire;
@@ -50,6 +50,7 @@ public class AnniversaireDAO {
         int indexId = curseur.getColumnIndex("id");
         int indexTitre = curseur.getColumnIndex("titre");
         int indexDate = curseur.getColumnIndex("date");
+
         /*int indexHeure = curseur.getColumnIndex("date");
         int indexDescription = curseur.getColumnIndex("date");
         int indexURL = curseur.getColumnIndex("date");*/

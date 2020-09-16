@@ -19,7 +19,7 @@ public class BaseDeDonnee extends SQLiteOpenHelper {
        return instance;
    }
 
-   public BaseDeDonnee(Context contexte,String name, SQLiteDatabase.CursorFactory factory,int version){
+   public BaseDeDonnee(Context contexte, String name, SQLiteDatabase.CursorFactory factory, int version){
        super(contexte,name,factory,version);
    }
 
@@ -29,7 +29,7 @@ public class BaseDeDonnee extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_TABLE = "create table anniversaire(id INTEGER PRIMARY KEY, titre TEXT,date TEXT)";
+        String CREATE_TABLE = "create table anniversaire(id INTEGER PRIMARY KEY, titre TEXT, date TEXT)";
         db.execSQL(CREATE_TABLE);
     }
 
@@ -49,7 +49,7 @@ public class BaseDeDonnee extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-       String CREER_TABLE = "create table anniversaires (id PRIMARY KEY, titre TEXT,date TEXT)";
+       String CREER_TABLE = "create table anniversaire (id PRIMARY KEY, titre TEXT,date TEXT)";
        db.execSQL(CREER_TABLE);
     }
 }
