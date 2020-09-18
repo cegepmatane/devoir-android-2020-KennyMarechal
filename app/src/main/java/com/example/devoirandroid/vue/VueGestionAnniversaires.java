@@ -31,6 +31,7 @@ public class VueGestionAnniversaires extends AppCompatActivity {
     protected Intent intentActionNaviguerModifierAnnirversaire;
 
     static final public int ACTIVITE_AJOUTER_ANNIVERSAIRE = 1;
+    static final public int ACTIVITE_MODIFER_ANNIVERSAIRE = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,17 +63,14 @@ public class VueGestionAnniversaires extends AppCompatActivity {
                         ListView vueListeAnniversaire = (ListView)view.getParent();
                         HashMap<String,String>anniversaire = (HashMap<String,String>)vueListeAnniversaire.getItemAtPosition((int)positionItem);
 
-                        /*Toast message = Toast.makeText(getApplicationContext(),"Position " +positionItem + " Titre "+ anniversaire.get("titre"),
-                                Toast.LENGTH_SHORT);
-                        message.show();*/
+                        intentActionNaviguerModifierAnnirversaire.putExtra("id",anniversaire.get("id"));
                         naviguerVueModifierAnniversaire();
-
                     }
                 });
     }
 
     private void naviguerVueModifierAnniversaire(){
-        startActivity(intentActionNaviguerModifierAnnirversaire);
+        startActivityForResult(intentActionNaviguerModifierAnnirversaire, ACTIVITE_MODIFER_ANNIVERSAIRE);
         finish();
     }
 

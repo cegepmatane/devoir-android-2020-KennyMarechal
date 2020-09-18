@@ -49,17 +49,18 @@ public class AnniversaireDAO {
         int indexId = curseur.getColumnIndex("id");
         int indexTitre = curseur.getColumnIndex("titre");
         int indexDate = curseur.getColumnIndex("date");
+        int indexDescription = curseur.getColumnIndex("description");
 
         /*int indexHeure = curseur.getColumnIndex("date");
-        int indexDescription = curseur.getColumnIndex("date");
         int indexURL = curseur.getColumnIndex("date");*/
 
         for(curseur.moveToFirst();!curseur.isAfterLast();curseur.moveToNext()){
             int id = curseur.getInt(indexId);
             String titre = curseur.getString(indexTitre);
             String date = curseur.getString(indexDate);
+            String description = curseur.getString(indexDescription);
 
-            listeAnniversaire.add(new Anniversaire(id, titre, date,"null","null","null"));
+            listeAnniversaire.add(new Anniversaire(id, titre, date,"null",description,"null"));
         }
         return listeAnniversaire;
     }
@@ -80,6 +81,12 @@ public class AnniversaireDAO {
         }finally {
             baseDeDonneeEcriture.endTransaction();
         }
+    }
+
+    public void moidifierAnniversaire(Anniversaire anniversaire){
+
+        //TODO
+
     }
 
     public Anniversaire chercherAnniversaireParId(int id){

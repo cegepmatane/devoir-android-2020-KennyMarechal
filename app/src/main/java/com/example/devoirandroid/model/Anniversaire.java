@@ -66,7 +66,7 @@ public class Anniversaire {
         HashMap<String,String> anniversairePourAfficher = new HashMap<String,String>();
         anniversairePourAfficher.put("id", ""+this.getId());
         anniversairePourAfficher.put("titre", this.getTitre());
-        anniversairePourAfficher.put("date", this.getDate());
+        anniversairePourAfficher.put("date", this.getDate() + " \n" + this.getDescription() + " \n" + this.getUrl());
 
         return anniversairePourAfficher;
     }
