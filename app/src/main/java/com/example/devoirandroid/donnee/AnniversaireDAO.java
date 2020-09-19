@@ -101,6 +101,20 @@ public class AnniversaireDAO {
         }
     }
 
+    public void supprimerAnniversaire(Anniversaire anniversaire){
+        SQLiteDatabase baseDeDonneeEcriture = this.baseDeDonnee.getWritableDatabase();
+
+        baseDeDonneeEcriture.beginTransaction();
+        try {
+            baseDeDonneeEcriture.delete("anniversaire","id="+anniversaire.getId(),null);
+            baseDeDonneeEcriture.setTransactionSuccessful();
+        }catch (Exception e){
+            Log.d("AnniversaireDAO","Errreur en tentant de supprimer un anniversaire dans la base de donnee");
+        }finally {
+            baseDeDonneeEcriture.endTransaction();
+        }
+    }
+
     public Anniversaire chercherAnniversaireParId(int id){
         listerAnniversaire();
         for(Anniversaire anniversaireRecherche : this.listeAnniversaire){

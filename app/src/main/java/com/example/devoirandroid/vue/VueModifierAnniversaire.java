@@ -16,6 +16,7 @@ public class VueModifierAnniversaire extends AppCompatActivity {
 
     protected Button actionRetour;
     protected Button actionModifier;
+    protected Button actionSupprimer;
     protected Intent intentActionNaviguerVueGestionAnniversaires;
 
     protected AnniversaireDAO anniversaireDAO;
@@ -34,6 +35,11 @@ public class VueModifierAnniversaire extends AppCompatActivity {
 
         actionRetour = (Button) findViewById(R.id.vueModifierAnniversaireActionRetour);
         actionModifier = (Button) findViewById(R.id.vueModifierAnniversaireActionModifier);
+        actionSupprimer = (Button) findViewById(R.id.vueModifierAnniversaireActionSupprimer);
+        anniversaireDAO = anniversaireDAO.getInstance();
+
+
+
         intentActionNaviguerVueGestionAnniversaires = new Intent(this, VueGestionAnniversaires.class);
 
         actionRetour.setOnClickListener(new View.OnClickListener() {
@@ -43,10 +49,30 @@ public class VueModifierAnniversaire extends AppCompatActivity {
             }
         });
 
+        actionSupprimer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                supprimerAnniversaire();
+                naviguerVueGestionAnniversaire();
+            }
+        });
+
+        paramatrerVueModifierAnniversaire();
+
+        actionModifier.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                enregisterAnniversaire();
+                naviguerVueGestionAnniversaire();
+            }
+        });
+    }
+
+    private void paramatrerVueModifierAnniversaire(){
         Bundle parametre = this.getIntent().getExtras();
         String idParametre = (String) parametre.get("id");
         int id = Integer.parseInt(idParametre);
-        anniversaireDAO = anniversaireDAO.getInstance();
+
         anniversaire = anniversaireDAO.chercherAnniversaireParId(id);
 
         vueModifierAnniversaireChampTitre = (EditText) findViewById(R.id.vueModifierAnniversaireChampTitre);
@@ -60,16 +86,11 @@ public class VueModifierAnniversaire extends AppCompatActivity {
         vueModifierAnniversaireChampHeure.setText(anniversaire.getHeure());
         vueModifierAnniversaireChampDescription.setText(anniversaire.getDescription());
         vueModifierAnniversaireChampURL.setText(anniversaire.getUrl());
-
-        actionModifier.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                enregisterAnniversaire();
-                naviguerVueGestionAnniversaire();
-            }
-        });
     }
 
+    private void supprimerAnniversaire(){
+        anniversaireDAO.supprimerAnniversaire(anniversaire);
+    }
     private void enregisterAnniversaire() {
         anniversaire.setTitre(vueModifierAnniversaireChampTitre.getText().toString());
         anniversaire.setDate(vueModifierAnniversaireChampDate.getText().toString());
