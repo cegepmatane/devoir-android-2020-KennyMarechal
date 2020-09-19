@@ -49,7 +49,7 @@ public class AnniversaireDAO {
         int indexId = curseur.getColumnIndex("id");
         int indexTitre = curseur.getColumnIndex("titre");
         int indexDate = curseur.getColumnIndex("date");
-        int indexDescription = curseur.getColumnIndex("description");
+        //int indexDescription = curseur.getColumnIndex("description");
 
         /*int indexHeure = curseur.getColumnIndex("date");
         int indexURL = curseur.getColumnIndex("date");*/
@@ -58,9 +58,9 @@ public class AnniversaireDAO {
             int id = curseur.getInt(indexId);
             String titre = curseur.getString(indexTitre);
             String date = curseur.getString(indexDate);
-            String description = curseur.getString(indexDescription);
+            //String description = curseur.getString(indexDescription);
 
-            listeAnniversaire.add(new Anniversaire(id, titre, date,"null",description,"null"));
+            listeAnniversaire.add(new Anniversaire(id, titre, date,"null", " null","null"));
         }
         return listeAnniversaire;
     }
@@ -83,10 +83,22 @@ public class AnniversaireDAO {
         }
     }
 
-    public void moidifierAnniversaire(Anniversaire anniversaire){
+    public void moidifierAnniversaire(Anniversaire anniversaire, int id){
+        SQLiteDatabase baseDeDonneeEcriture = this.baseDeDonnee.getWritableDatabase();
 
-        //TODO
+        baseDeDonneeEcriture.beginTransaction();
+        try {
+            ContentValues anniversaireEnCleValeur = new ContentValues();
+            anniversaireEnCleValeur.put("titre",anniversaire.getTitre());
+            anniversaireEnCleValeur.put("date",anniversaire.getDate());
 
+            baseDeDonneeEcriture.update("anniversaire", anniversaireEnCleValeur,"id="+anniversaire.getId(),null);
+            baseDeDonneeEcriture.setTransactionSuccessful();
+        }catch (Exception e){
+            Log.d("AnniversaireDAO","Errreur en tentant de modifier un anniversaire dans la base de donnee");
+        }finally {
+            baseDeDonneeEcriture.endTransaction();
+        }
     }
 
     public Anniversaire chercherAnniversaireParId(int id){

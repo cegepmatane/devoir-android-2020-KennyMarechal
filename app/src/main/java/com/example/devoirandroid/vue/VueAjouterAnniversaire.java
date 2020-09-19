@@ -73,7 +73,7 @@ public class VueAjouterAnniversaire extends AppCompatActivity {
 
         anniversaireDAO = anniversaireDAO.getInstance();
 
-        anniversaireDAO.ajouterAnniversaire(new Anniversaire(0,titre,date,heure,description,url));
+        anniversaireDAO.ajouterAnniversaire(new Anniversaire(0, titre, date, heure, description, url));
     }
 
     private void naviguerVueGestionAnniversaire(){

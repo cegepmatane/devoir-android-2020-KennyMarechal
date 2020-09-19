@@ -38,21 +38,21 @@ public class BaseDeDonnee extends SQLiteOpenHelper {
 
     @Override
     public void onOpen(SQLiteDatabase db) {
-        /*String DELETE = "delete from anniversaire where 1 = 1";
+        String DELETE = "delete from anniversaire where 1 = 1";
         db.execSQL(DELETE);
 
-        String INSERT_1 = "insert into anniversaire(titre,date) VALUES ('Anniversaire Kenny','27/05/1993')";
-        String INSERT_2 = "insert into anniversaire(titre,date) VALUES ('Anniversaire Jessica','01/04/1987')";
-        String INSERT_3 = "insert into anniversaire(titre,date) VALUES ('Anniversaire Leon','10/12/2018')";
+        String INSERT_1 = "insert into anniversaire(titre, date) VALUES ('Anniversaire Kenny','27/05/1993')";
+        String INSERT_2 = "insert into anniversaire(titre, date) VALUES ('Anniversaire Jessica','01/04/1987')";
+        String INSERT_3 = "insert into anniversaire(titre, date) VALUES ('Anniversaire Leon','10/12/2018')";
 
         db.execSQL(INSERT_1);
         db.execSQL(INSERT_2);
-        db.execSQL(INSERT_3);*/
+        db.execSQL(INSERT_3);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-       String CREER_TABLE = "create table anniversaire (id PRIMARY KEY, titre TEXT,date TEXT)";
-       db.execSQL(CREER_TABLE);
+       String CREATE_TABLE = "create table anniversaire (id PRIMARY KEY, titre TEXT, date TEXT)";
+       db.execSQL(CREATE_TABLE);
     }
 }

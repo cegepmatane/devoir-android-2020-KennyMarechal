@@ -77,7 +77,7 @@ public class VueModifierAnniversaire extends AppCompatActivity {
         anniversaire.setDescription(vueModifierAnniversaireChampDescription.getText().toString());
         anniversaire.setUrl(vueModifierAnniversaireChampURL.getText().toString());
 
-        anniversaireDAO.moidifierAnniversaire(anniversaire);
+        anniversaireDAO.moidifierAnniversaire(anniversaire, anniversaire.getId());
     }
 
     private void naviguerVueGestionAnniversaire(){
