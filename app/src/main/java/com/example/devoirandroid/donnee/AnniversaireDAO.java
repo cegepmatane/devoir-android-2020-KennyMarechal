@@ -58,9 +58,9 @@ public class AnniversaireDAO {
             int id = curseur.getInt(indexId);
             String titre = curseur.getString(indexTitre);
             String date = curseur.getString(indexDate);
-            //String description = curseur.getString(indexDescription);
+            String url = "https://www.cybercartes.com/apercu/35662/cc/anniversaire";
 
-            listeAnniversaire.add(new Anniversaire(id, titre, date,"null", " null","null"));
+            listeAnniversaire.add(new Anniversaire(id, titre, date,"00:00","Anniversaire" ,url));
         }
         return listeAnniversaire;
     }

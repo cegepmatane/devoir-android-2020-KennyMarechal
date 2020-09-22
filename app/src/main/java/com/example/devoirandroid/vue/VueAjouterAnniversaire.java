@@ -7,13 +7,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.devoirandroid.R;
 import com.example.devoirandroid.donnee.AnniversaireDAO;
 import com.example.devoirandroid.model.Anniversaire;
 
-import java.util.HashMap;
 
 public class VueAjouterAnniversaire extends AppCompatActivity {
 
@@ -57,9 +55,6 @@ public class VueAjouterAnniversaire extends AppCompatActivity {
             public void onClick(View view) {
                 enregistrerAnniversaire();
                 naviguerVueGestionAnniversaire();
-                /*Toast message = Toast.makeText(getApplicationContext(),"Champ titre "+vueAjouterAnniversaireChampTitre.getText().toString(),
-                        Toast.LENGTH_SHORT);
-                message.show();*/
             }
         });
     }
@@ -69,7 +64,7 @@ public class VueAjouterAnniversaire extends AppCompatActivity {
         String date = vueAjouterAnniversaireChampDate.getText().toString();
         String heure = vueAjouterAnniversaireChampHeure.getText().toString();
         String description = vueAjouterAnniversaireChampDescription.getText().toString();
-        String url = vueAjouterAnniversaireChampURL.getText().toString();
+        String url = "https://www.cybercartes.com/apercu/35662/cc/anniversaire";
 
         anniversaireDAO = anniversaireDAO.getInstance();
 
